@@ -1,0 +1,45 @@
+package g_agenda;
+
+import java.util.List;
+
+public class Objeto {
+    private String estado;
+    private String nombre;
+    private String fechaInicio;
+    private String fechaFin;
+    private List<String> dias;
+    private List<String> horas;
+
+    public Objeto(String estado, String nombre, String fechaInicio, String fechaFin, List<String> dias, List<String> horas) {
+        this.estado = estado;
+        this.nombre = nombre;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.dias = dias;
+        this.horas = horas;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public String getFechaFin() {
+        return fechaFin;
+    }
+
+    public List<String> getDias() {
+        return dias;
+    }
+
+    public List<String> getHoras() {
+        return horas;
+    }
+}
