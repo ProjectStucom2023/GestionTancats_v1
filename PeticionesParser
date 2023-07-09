@@ -1,0 +1,27 @@
+package g_agenda;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class PeticionesParser {
+
+    public List<Objeto> convertirLineasEnObjetos(List<String> lineas) {
+        List<Objeto> objetos = new ArrayList<>();
+        for (String linea : lineas) {
+            String[] fragmentos = linea.split(" ");
+
+            String estado = fragmentos[0];
+            String nombre = fragmentos[1];
+            String fechaInicio = fragmentos[2];
+            String fechaFin = fragmentos[3];
+            String dias = fragmentos[4];
+            String horas = fragmentos[5];
+
+            List<String> listaDias = Arrays.asList(dias.split(""));
+            List<String> listaHoras = Arrays.asList(horas.split("_"));
+
+            objetos.add(new Objeto(estado, nombre, fechaInicio, fechaFin, listaDias, listaHoras));
+        }
+        return objetos;
+    }
+}
