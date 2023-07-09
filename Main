@@ -1,0 +1,47 @@
+package g_agenda;
+
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+        PeticionesReader reader = new PeticionesReader();
+        List<String> lineas = reader.leerPeticiones();
+
+        PeticionesProcessor processor = new PeticionesProcessor();
+        List<String> lineasTancat = processor.filtrarTancat(lineas);
+
+        PeticionesParser parser = new PeticionesParser();
+        List<Objeto> objetos = parser.convertirLineasEnObjetos(lineasTancat);
+
+        for (Objeto objeto : objetos) {
+            String nombreSala = objeto.getNombre();
+            String estadoSala = objeto.getEstado();
+            String fechaInicio = objeto.getFechaInicio();
+            String fechaFin = objeto.getFechaFin();
+            List<String> dias = objeto.getDias();
+            List<String> horas = objeto.getHoras();
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("La ").append(nombreSala).append(" está ").append(estadoSala);
+            sb.append(" del día ").append(fechaInicio).append(" al día ").append(fechaFin);
+            sb.append(" en los días ").append(String.join("", dias));
+            sb.append(" en las horas de: ");
+
+            for (int i = 0; i < horas.size(); i++) {
+                String hora = horas.get(i);
+                String[] rango = hora.split("-");
+                String horaInicio = rango[0];
+                String horaFin = rango[1];
+
+                if (i == 0) {
+                    sb.append(horaInicio).append("-").append(horaFin);
+                } else {
+                    sb.append(" a ").append(horaInicio).append("-").append(horaFin);
+                }
+            }
+
+            System.out.println(sb.toString());
+        }
+    }
+}
