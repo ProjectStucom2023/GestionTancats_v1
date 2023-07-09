@@ -1,0 +1,17 @@
+package g_agenda;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PeticionesProcessor {
+
+    public List<String> filtrarTancat(List<String> lineas) {
+        List<String> lineasTancat = new ArrayList<>();
+        for (String linea : lineas) {
+            if (linea.startsWith("Tancat")) {
+                lineasTancat.add(linea);
+            }
+        }
+        return lineasTancat;
+    }
+}
